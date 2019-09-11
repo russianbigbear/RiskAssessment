@@ -15,7 +15,8 @@ def print_data(matrix):
     for i in range(len(matrix)):
         print("\t".join([str(round(k, 10)) for k in matrix[i]]))
     print("")
-    
+
+
 def create_riskmatrix(matrix):
     """Вычисление матрицы рисков"""
 
@@ -169,6 +170,7 @@ def perfect_experiment(matrix, probability):
     print("Минимальное значение средних рисков равно %f."
           "Планированиеыше эксперимента выше этой цены становится нецелесообразным."% (risk_medium_matrix[tmp_ind]))
 
+
 def main():
     """Основная функция"""
 
@@ -176,8 +178,9 @@ def main():
     coof = float(input("Введите коофицент Гурвица: "))
 
     probability = [0 for i in range(len(cost_matrix[0]))]
-    for i in range(len(cost_matrix[0])):
-        probability[i] = float(input("Введите вероятность условия для столбца %d: " % (i + 1)))
+    while not np.sum(probability) == 1:
+        for i in range(len(cost_matrix[0])):
+            probability[i] = float(input("Введите вероятность условия для столбца %d: " % (i + 1)))
     print()
 
     print("Платежная матрица: ")
